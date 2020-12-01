@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+</head>
+<body>
+    <!-- Vue 自定义指令的用法 -->
+    <div id="app">
+        <!-- 两种方式等同 -->
+        <input type="text" v-focus v-color="{color:'blue'}">
+        <input type="text" v-focus v-color="msg">
+        <input type="text" v-focus2 v-color2="msg">
+
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        // 不带参数的自定义指令
+        Vue.directive('focus',{
+            inserted: function(el) {
+                el.focus()
+            }
+        })
+
+        // 带参数的自定义指令
+        Vue.directive('color',{
+            bind: function(el,binding){
+                el.style.backgroundColor = binding.value.color
+            }
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: {
+                    color: 'red'
+                }
+            },
+            //局部指令
+            directives: {
+                focus2: {
+                    inserted: function(el){
+                        el.focus()
+                    }
+                },
+                color2: {
+                    bind: function(el,binding) {
+                        el.style.backgroundColor = binding.value.color
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

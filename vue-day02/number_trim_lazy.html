@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Vue 表单修饰符: .number  .trim  .lazy -->
+        <!-- 自动将用户的输入值转为数值类型 -->
+        <input type="text" v-model.number='num'>
+
+        <!--自动过滤用户输入的首尾空白字符   -->
+        <input type="text" v-model.trim='space'>
+
+        <!-- 在“change”时而非“input”时更新 -->
+        <input type="text" v-model.lazy='msg'>
+        <span>.lazy显示：</span>{{msg}}
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                num: '',
+                space: '',
+                msg: ''
+            }
+        })
+
+    </script>
+</body>
+</html>

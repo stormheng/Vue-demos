@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器案例--用户名检测</title>
+</head>
+<body>
+    <div id="app">
+        <span>请输入用户名：</span>
+        <input type="text" v-model.lazy='uname'>
+        <span>{{info}}</span>
+
+    </div>
+
+
+
+    <script src="../vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data: {
+                uname:'',
+                info:''
+            },
+            methods: {
+                checkName(uname){
+                    let that = this//因为setTimeout中的this是window
+                    //调用接口，异步操作，可以使用定时器模拟
+                    setTimeout(() =>  {
+                        if(uname === 'admin'){
+                            that.info = '用户名已存在'
+                        } else {
+                            that.info = '用户名可以使用'
+                        }
+                    },2000)
+                }
+
+            },
+            watch: {
+                uname: function(val) {
+                    this.checkName(val)
+                    this.info = '正在验证...'
+                }
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

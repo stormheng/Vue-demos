@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器</title>
+</head>
+<body>
+    <div id="app">
+        <span>名：</span>
+        <input type="text" v-model='firstName'><br>
+        <span>姓：</span>
+        <input type="text" v-model='lastName'><br>
+        <span>全名：{{fullName}}</span>
+
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data: {
+                firstName:'Jim',
+                lastName:'Green',
+                fullName:'Jim Green'
+            },
+            watch: {
+                firstName: function(val){ //这里的val就是firstName
+                    this.fullName = val + ' ' + this.lastName
+                },
+                lastName: function(val){
+                    this.fullName = this.firstName + ' ' + val
+                }
+            }
+
+        })
+    </script>
+    
+</body>
+</html>
