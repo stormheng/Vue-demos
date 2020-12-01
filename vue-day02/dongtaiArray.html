@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组变异</title>
+</head>
+<body>
+    <!-- • Vue把这些原生的API处理成了响应式的方式
+         • 即数据的变化会使页面中内容相应变化 -->
+    <div id="app">
+        <input type="text" v-model='newAdd'>
+        <button @click='add'>添加</button>
+        <ul>
+            <li :key='index' v-for='(item,index) in arr'>{{item}}</li>
+        </ul>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                arr: ['苹果','桂圆','香蕉'],
+                newAdd:''
+
+            },
+            methods: {
+                add: function(){
+                    return this.arr.push(this.newAdd)
+                }
+            }
+        })
+        Vue.set(vm.arr,0,'柠檬')
+    </script>
+</body>
+</html>
