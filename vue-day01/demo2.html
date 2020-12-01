@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form">
+        <span>姓名: </span><input type="text" v-model.trim='uname'><br><br>
+        <span>性别:   </span>
+        <input type="radio" v-model="gender" value="1" id="male">
+        <label for="male">男</label>
+        <input type="radio" v-model="gender" value="2" id="female">
+        <label for="female">女</label>
+        <br><br>
+        <span>爱好： </span>
+        <input type="checkbox" value="1" v-model="hobby">篮球
+        <input type="checkbox" value="2" v-model="hobby">唱歌
+        <input type="checkbox" value="3" v-model="hobby">代码<br><br>
+        <span>职业：</span>
+        <select v-model='occupation' multiple>
+            <option value="0">请选择职业</option>
+            <option value="1">老师</option>
+            <option value="2">学生</option>
+            <option value="3">工人</option>
+        </select><br><br>
+        <span>个人简介: </span>
+        <textarea name="" ></textarea>
+        <input type="submit" value="表单提交" @click.prevent='handle'>
+    </form>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: 'form',
+            data: {
+                uname: '',
+                gender: 2,
+                hobby: ['1','2'],
+                occupation: [1,2]
+            },
+            methods: {
+                handle: function(){
+                    console.log(this.uname)
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>
